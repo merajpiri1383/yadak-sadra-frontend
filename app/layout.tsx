@@ -3,36 +3,39 @@ import { type Metadata } from "next";
 import "@/app/globals.css";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
+import ReactQueryProvider from "@/app/provider";
 
-const Header = dynamic(() => import("@/components/header/index"),{ssr : true});
+const Header = dynamic(() => import("@/components/header/index"), { ssr: true });
 
 const YekanFont = localFont({
-    src : [
+    src: [
         {
-            path : "../public/fonts/BYekan+.ttf",
-            style : "normal",
-            weight : "400",
-        },{
-            path : "../public/fonts/BYekan+ Bold.ttf",
-            style : "normal",
-            weight : "700",
+            path: "../public/fonts/BYekan+.ttf",
+            style: "normal",
+            weight: "400",
+        }, {
+            path: "../public/fonts/BYekan+ Bold.ttf",
+            style: "normal",
+            weight: "700",
         },
     ],
-    variable : "--yekan-font",
+    variable: "--yekan-font",
 })
 
 
-export const metadata : Metadata = {
-    title : "Yadak-Sadra"
+export const metadata: Metadata = {
+    title: "Yadak-Sadra"
 }
 
-const Layout : FC<{children : React.ReactNode}> = ({ children }) => {
+const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <html>
             <body className={YekanFont.variable}>
-                <Header />
-                {children}
+                <ReactQueryProvider>
+                    <Header />
+                    {children}
+                </ReactQueryProvider>
             </body>
         </html>
     )
-};export default Layout;
+}; export default Layout;
