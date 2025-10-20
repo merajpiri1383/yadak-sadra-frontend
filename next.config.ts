@@ -6,11 +6,9 @@ const nextConfig : NextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '8000', // or whatever port you're using
+        port: '8000',
       },
     ],
-    // OR, if you're using Next <13.1, use this format:
-    // domains: ['localhost'],
   },
 };
 

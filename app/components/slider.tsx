@@ -2,8 +2,8 @@ import { FC, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
-import { SliderType } from "@/components/types";
 import 'swiper/css';
+import { SliderType } from "@/components/types";
 import ArrowRightIcon from "@/components/icons/home/arrowRight";
 import ArrowLeftIcon from "@/components/icons/home/arrowLeft";
 import Link from "next/link";
@@ -23,7 +23,7 @@ const Slider: FC<SliderType> = ({ boxes, images }) => {
     }
 
     return (
-        <div className="my-6 grid grid-cols-4 gap-4">
+        <div className="my-6 grid grid-cols-4 gap-4 mx-16">
             <div className="col-span-3">
                 <Swiper
                     spaceBetween={100}

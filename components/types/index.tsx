@@ -1,11 +1,11 @@
 
-interface CountryType {
+export interface CountryType {
     name: string,
     slug: string,
     flag: string,
 }
 
-interface CarBrandsType {
+export interface CarBrandsType {
     is_own: boolean,
     logo: string,
     name: string,
