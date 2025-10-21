@@ -1,5 +1,5 @@
 "use client"
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
@@ -27,7 +27,7 @@ const FilteredBrands: FC<{
                 </div>
             </div>
             <Swiper
-                slidesPerView={5.1}
+                slidesPerView={filteredBrands.length > 5 ? 5 : filteredBrands.length}
                 spaceBetween={30}
                 loop={true}
                 allowTouchMove={false}
@@ -143,7 +143,13 @@ const Brands: FC<{
     const [currentCountry, setCountry] = useState("all");
     const [filteredBrands, setFilteredBrands] = useState<CarBrandsType[]>(car_brands);
 
-
+    useEffect(() => {
+        if (currentCountry === "all") {
+            setFilteredBrands(car_brands);
+        } else {
+            setFilteredBrands(car_brands.filter((item) => item.country?.slug === currentCountry))
+        }
+    },[currentCountry]);
 
     return (
         <div className="bg-[#E9F0F4] my-12 rounded-[50px] relative py-6 select-none">

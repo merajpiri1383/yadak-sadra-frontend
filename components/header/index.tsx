@@ -9,9 +9,11 @@ import SearchIcon from "@/icons/header/search";
 const Header = () => {
 
     return (
-        <div className="[direction:rtl] my-6 mx-16">
+        <>
+
             <HeaderLinks />
-            <div className="flex items-center justify-between my-2">
+
+            <div className="flex items-center justify-between my-2 my-6 mx-16">
                 <div className="h-[89px] w-[152px] relative">
                     <Image
                         src={Logo}
@@ -27,7 +29,7 @@ const Header = () => {
                     </div>
                     <div className="bg-[#E9F0F4] p-4 flex items-center justify-between rounded-[53px]
                         w-[280px]">
-                        <input 
+                        <input
                             type="text"
                             placeholder="جستجو در محصولات ..."
                             className="outline-none placeholder-[#4C6272F8] placeholder-[13px]
@@ -78,7 +80,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+        </>
 
-        </div>
     )
 }; export default Header;

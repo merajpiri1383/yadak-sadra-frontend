@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import ReactQueryProvider from "@/app/provider";
 
 const Header = dynamic(() => import("@/components/header/index"), { ssr: true });
+const Footer = dynamic(() => import("@/components/footer/index"),{ssr : true})
 
 const YekanFont = localFont({
     src: [
@@ -30,10 +31,11 @@ export const metadata: Metadata = {
 const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <html>
-            <body className={YekanFont.variable}>
+            <body className={YekanFont.variable + " [direction:rtl]"}>
                 <ReactQueryProvider>
                     <Header />
                     {children}
+                    <Footer />
                 </ReactQueryProvider>
             </body>
         </html>
