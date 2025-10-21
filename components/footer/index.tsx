@@ -9,6 +9,7 @@ import { useMemo } from "react";
 const Cards = dynamic(() => import("@/components/footer/cards"), { ssr: false });
 const Links = dynamic(() => import("@/components/footer/links"), { ssr: false });
 const Socials = dynamic(() => import("@/components/footer/socials"), { ssr: false });
+const Connection = dynamic(() => import("@/components/footer/connection"), { ssr: false });
 
 const Footer = () => {
 
@@ -48,6 +49,24 @@ const Footer = () => {
                 </div>
                 <div className="col-span-1">
                     <Socials />
+                </div>
+            </div>
+
+            <Connection />
+            <div className="flex items-center justify-between pb-6">
+                <p className="text-[#FFFFFF] text-[13px] font-[700]">
+                    تمامی حقوق این وبسایت برای شرکت بازرگانی به آفرین یدک صدرا محفوظ می باشد</p>
+                <div className="flex items-center justify-center gap-4">
+                    <p className="text-[#FFFFFF] text-[13px] font-[500]">شرکت بازرگانی به آفرین یدک صدرا</p>
+                    <div className="w-[30px] h-[32px] relative">
+                        <Image
+                            src={FooterLogo}
+                            alt="footer logo"
+                            sizes="100%"
+                            fill={true}
+                            style={{ objectFit: "cover", objectPosition: "center" }}
+                        />
+                    </div>
                 </div>
             </div>
         </footer>
