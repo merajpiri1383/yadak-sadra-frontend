@@ -12,7 +12,7 @@ const ProductCategories: FC<{
             {
                 categories.map((category) => {
                     return (
-                        <Link href={"/"} key={category.slug} 
+                        <Link href={"/product/category/" + category.slug} key={category.slug}
                             className="shadow-lg rounded-[30px] hover:-translate-y-[10px] transition
                             duration-300">
                             <div className="border-dashed border border-[#E2E8EF] rounded-[30px] p-6 pb-0
@@ -28,7 +28,7 @@ const ProductCategories: FC<{
                                         alt={category.slug}
                                         fill={true}
                                         className="rounded-[30px]"
-                                        style={{objectFit : "cover",objectPosition : "center"}}
+                                        style={{ objectFit: "cover", objectPosition: "center" }}
                                     />
                                 </div>
                             </div>
