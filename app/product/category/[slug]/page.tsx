@@ -23,6 +23,8 @@ const Page = () => {
         queryFn: () => getProductCategory(slug)
     });
 
+    console.log(data);
+
 
     const orders: Order[] = [
         {
@@ -84,7 +86,12 @@ const Page = () => {
 
             <div className="grid grid-cols-9 mt-6">
                 <div className="col-span-2">
-                    {/* <ProductFilter /> */}
+                    {
+                        data?.brands && <ProductFilter
+                            brands={data.brands}
+                            countries={data.countries}
+                        />
+                    }
                 </div>
                 <div className="col-span-7"></div>
             </div>

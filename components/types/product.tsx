@@ -27,4 +27,6 @@ export interface ProductType {
 export interface ProductCategoryResponseType {
     products : ProductType[],
     count : number,
+    countries : CountryType[],
+    brands : CarBrandsType[],
 }
