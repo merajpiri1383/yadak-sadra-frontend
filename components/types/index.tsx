@@ -26,9 +26,16 @@ export interface SliderType {
     is_active : boolean
 }
 
+export interface ProductCategoryType {
+    title : string,
+    slug : string,
+    image : string,
+}
+
 export interface IndexResponse {
     car_brands: CarBrandsType[],
     brand_countries: CountryType[],
     yadak_sadra_brands: CarBrandsType[],
     slider : SliderType,
+    product_categories : ProductCategoryType[],
 }

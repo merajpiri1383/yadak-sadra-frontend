@@ -7,6 +7,7 @@ import { IndexResponse } from "@/components/types";
 const Slider = dynamic(() => import("@/app/components/slider"), { ssr: true });
 const Brands = dynamic(() => import("@/app/components/brands"), { ssr: true });
 const CarToolsTypes = dynamic(() => import("@/app/components/carToolsTypes"), { ssr: true });
+const ProductCategories = dynamic(() => import("@/app/components/productCategories"), { ssr: true });
 
 
 const HomePageClient = () => {
@@ -28,6 +29,9 @@ const HomePageClient = () => {
                     car_brands={data.car_brands}
                     yadak_sadra_brands={data.yadak_sadra_brands}
                 />
+            }
+            {
+                data?.product_categories && <ProductCategories categories={data?.product_categories} />
             }
             <CarToolsTypes />
         </div>
