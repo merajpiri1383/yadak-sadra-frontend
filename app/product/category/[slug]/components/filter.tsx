@@ -12,14 +12,14 @@ type Filter = "brand" | "country" | "all";
 interface Props {
     brands: CarBrandsType[],
     countries: CountryType[],
-    countryFilter : string | null,
-    setCountryFilter : React.Dispatch<React.SetStateAction<string | null>>,
-    brandFilter : string | null,
-    setBrandFilter : React.Dispatch<React.SetStateAction<string | null>>,
+    countryFilter: string | null,
+    setCountryFilter: React.Dispatch<React.SetStateAction<string | null>>,
+    brandFilter: string | null,
+    setBrandFilter: React.Dispatch<React.SetStateAction<string | null>>,
 }
 
-const ProductFilter: FC<Props> = ({ 
-    brands, 
+const ProductFilter: FC<Props> = ({
+    brands,
     countries,
     brandFilter,
     countryFilter,
@@ -30,6 +30,14 @@ const ProductFilter: FC<Props> = ({
     const [currentFilterOpen, setFilterOpen] = useState<Filter>("all");
     const brandRef = useRef<HTMLDivElement | null>(null);
     const countryRef = useRef<HTMLDivElement | null>(null);
+
+    const handleCountyFilter = (country: CountryType) => {
+        countryFilter === country.slug ? setCountryFilter(null) : setCountryFilter(country.slug);
+    };
+
+    const handleBrandFilter = (brand: CarBrandsType) => {
+        brandFilter === brand.slug ? setBrandFilter(null) : setBrandFilter(brand.slug);
+    }
 
     return (
         <div className="bg-[#F5F8FA] border-[0.5px] border-[#BBC2D8] rounded-[20px]">
@@ -53,11 +61,11 @@ const ProductFilter: FC<Props> = ({
                     "--brand-height": brandRef.current?.scrollHeight + "px"
                 } as React.CSSProperties}
                 className={`${currentFilterOpen === "brand" ? "filter-brand-open border-b-[0.5px]"
-                : "filter-brand-close"} overflow-hidden  border-[#BBC2D8]`} ref={brandRef}>
+                    : "filter-brand-close"} overflow-hidden  border-[#BBC2D8]`} ref={brandRef}>
                 {
                     brands.map((brand) => {
                         return (
-                            <div key={brand.slug} onClick={() => setBrandFilter(brand.slug)}
+                            <div key={brand.slug} onClick={() => handleBrandFilter(brand)}
                                 className="flex items-center justify-start gap-3 px-4 py-2 cursor-pointer">
                                 <div className="size-[20px]">
                                     {
@@ -94,7 +102,7 @@ const ProductFilter: FC<Props> = ({
                 {
                     countries.map((country) => {
                         return (
-                            <div key={country.slug} onClick={() => setCountryFilter(country.slug)}
+                            <div key={country.slug} onClick={() => handleCountyFilter(country)}
                                 className="flex items-center justify-start gap-3 px-4 py-2 cursor-pointer">
                                 <div className="size-[20px]">
                                     {

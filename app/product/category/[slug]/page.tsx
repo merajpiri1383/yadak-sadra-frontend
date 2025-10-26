@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import ArrowLeftIcon from "@/components/icons/home/arrowLeft";
@@ -17,14 +17,6 @@ interface Order {
 
 const Page = () => {
 
-    const { slug } = useParams<{ slug: string }>();
-
-    const { data } = useQuery<ProductCategoryResponseType>({
-        queryKey: [slug],
-        queryFn: () => getProductCategory(slug)
-    });
-
-
     const orders: Order[] = [
         {
             name: "جدیدترین",
@@ -41,6 +33,20 @@ const Page = () => {
     const [currentOrder, setOrder] = useState<Order>(orders[0]);
     const [countryFilter, setCountryFilter] = useState<string | null>(null);
     const [brandFilter, setBrandFilter] = useState<string | null>(null);
+
+    const { slug } = useParams<{ slug: string }>();
+
+    const query = useQuery<ProductCategoryResponseType>({
+        queryKey: [slug],
+        queryFn: () => getProductCategory(slug, currentOrder.slug, brandFilter, countryFilter)
+    });
+
+
+
+
+    useEffect(() => {
+        query.refetch();
+    }, [brandFilter, countryFilter, currentOrder]);
 
 
     return (
@@ -85,12 +91,12 @@ const Page = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-9 mt-6">
+            <div className="grid grid-cols-9 mt-6 gap-6">
                 <div className="col-span-2">
                     {
-                        data?.brands && <ProductFilter
-                            brands={data.brands}
-                            countries={data.countries}
+                        query.data?.brands && <ProductFilter
+                            brands={query.data.brands}
+                            countries={query.data.countries}
                             brandFilter={brandFilter}
                             countryFilter={countryFilter}
                             setBrandFilter={setBrandFilter}
@@ -98,7 +104,15 @@ const Page = () => {
                         />
                     }
                 </div>
-                <div className="col-span-7"></div>
+                <div className="col-span-7 grid grid-cols-3 gap-6">
+                    {
+                        query.data?.products.map((product) => {
+                            return (
+                                <Product key={product.slug} {...product} />
+                            )
+                        })
+                    }
+                </div>
             </div>
         </div>
     )

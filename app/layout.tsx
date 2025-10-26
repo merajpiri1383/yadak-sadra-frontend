@@ -6,19 +6,23 @@ import localFont from "next/font/local";
 import ReactQueryProvider from "@/app/provider";
 
 const Header = dynamic(() => import("@/components/header/index"), { ssr: true });
-const Footer = dynamic(() => import("@/components/footer/index"),{ssr : true})
+const Footer = dynamic(() => import("@/components/footer/index"), { ssr: true })
 
 const YekanFont = localFont({
     src: [
         {
-            path: "../public/fonts/BYekan+.ttf",
+            path: "../public/fonts/Yekan_Bakh_Fanum_Regular.ttf",
             style: "normal",
-            weight: "400",
+            weight: "500",
         }, {
-            path: "../public/fonts/BYekan+ Bold.ttf",
+            path: "../public/fonts/Yekan_Bakh_Fanum_Semi_Bold.ttf",
             style: "normal",
-            weight: "700",
-        },
+            weight: "800",
+        }, {
+            path: "../public/fonts/Yekan_Bakh_Fanum_Thin.ttf",
+            style: "normal",
+            weight: "300"
+        }
     ],
     variable: "--yekan-font",
 })
