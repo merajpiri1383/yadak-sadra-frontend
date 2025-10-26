@@ -8,6 +8,7 @@ import { getProductCategory } from "@/lib/api/product";
 import { ProductCategoryResponseType } from "@/components/types/product";
 
 const ProductFilter = dynamic(() => import("@/app/product/category/[slug]/components/filter"), { ssr: false });
+const Product = dynamic(() => import("@/app/product/category/[slug]/components/product"), { ssr: false });
 
 interface Order {
     name: string,
@@ -22,8 +23,6 @@ const Page = () => {
         queryKey: [slug],
         queryFn: () => getProductCategory(slug)
     });
-
-    console.log(data);
 
 
     const orders: Order[] = [
@@ -40,6 +39,8 @@ const Page = () => {
     ]
 
     const [currentOrder, setOrder] = useState<Order>(orders[0]);
+    const [countryFilter, setCountryFilter] = useState<string | null>(null);
+    const [brandFilter, setBrandFilter] = useState<string | null>(null);
 
 
     return (
@@ -90,6 +91,10 @@ const Page = () => {
                         data?.brands && <ProductFilter
                             brands={data.brands}
                             countries={data.countries}
+                            brandFilter={brandFilter}
+                            countryFilter={countryFilter}
+                            setBrandFilter={setBrandFilter}
+                            setCountryFilter={setCountryFilter}
                         />
                     }
                 </div>

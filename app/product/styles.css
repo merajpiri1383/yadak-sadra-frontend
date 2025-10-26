@@ -1,0 +1,21 @@
+.filter-brand-open {
+    height: var(--brand-height);
+    transition: 400ms;
+}
+
+.filter-brand-close {
+    height: 0px;
+    transition: 400ms;
+}
+
+
+.filter-country-open {
+    transition: 400ms;
+    height: var(--country-height);
+}
+
+
+.filter-county-close {
+    transition: 400ms;
+    height: 0px;
+}
