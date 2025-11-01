@@ -33,7 +33,7 @@ const HeaderLinks = () => {
 
     return (
         <div className="px-16 py-4 flex items-center justify-between border-b-[1px] 
-            border-[#E8EEF3] pb-2 sticky top-0 left-0 right-0 shadow-xl z-[5] bg-white">
+            border-[#E8EEF3] pb-2 sticky top-0 left-0 right-0 shadow-xl z-[10] bg-white">
             <div className="flex items-center justify-start gap-10">
                 {
                     links.map((link, index) => {

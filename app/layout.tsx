@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import ReactQueryProvider from "@/app/provider";
+import { ToastContainer } from "react-toastify";
 
 const Header = dynamic(() => import("@/components/header/index"), { ssr: true });
 const Footer = dynamic(() => import("@/components/footer/index"), { ssr: true })
@@ -40,6 +41,11 @@ const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
                     <Header />
                     {children}
                     <Footer />
+
+                    <ToastContainer
+                        draggable={true}
+                        position="top-left"
+                    />
                 </ReactQueryProvider>
             </body>
         </html>

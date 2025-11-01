@@ -11,9 +11,7 @@ const AuthLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
         <section className="my-16 border-[1px] border-[#00000017] w-fit mx-auto p-4 bg-[#FFFFFF] rounded-[30px]
             shadow-[0px_30px_70px_0px_#12121508] grid grid-cols-2 gap-4">
             <div className="col-span-1">
-                <Slide direction="right" duration={300} triggerOnce className="h-full">
-                    {children}
-                </Slide>
+                {children}
             </div>
             <div className="col-span-1">
                 <Slide direction="left" duration={300} triggerOnce>
