@@ -9,6 +9,7 @@ interface LayoutStoreType {
     footer_data: FooterType | null,
     fetchData: () => void,
     user_data: UserType | null,
+    set_user: (data: UserType) => void,
 }
 
 
@@ -21,6 +22,9 @@ const useLayoutStore = create<LayoutStoreType>()(
                 set({ footer_data: response.data.footer });
             },
             user_data: null,
+            set_user: (data: UserType) => {
+                set({ user_data: data })
+            }
         }),
         {
             name: "footer",
