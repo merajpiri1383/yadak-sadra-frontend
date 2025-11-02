@@ -6,15 +6,28 @@ import LockIcon from "@/components/icons/auth/lock";
 import KeyIcon from "@/components/icons/auth/key";
 import MessageIcon from "@/components/icons/auth/message";
 import { useState } from "react";
+import { LoginAPI } from "@/lib/api/auth";
+import { useMutation } from "@tanstack/react-query";
 
 
 const Page = () => {
 
     const [loginMethod, setLoginMethod] = useState<"password" | "otp">("password");
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+
+    const loginMutation = useMutation({
+        mutationFn : LoginAPI,
+    })
+
+    const submitHandler = (event : React.FormEvent) => {
+        event.preventDefault();
+    };
 
     return (
         <section className="p-4 flex items-center justify-center h-full">
-            <form>
+            <form onSubmit={submitHandler}>
                 <div className="flex items-center justify-start gap-4 bg-[#F6F8F9] w-fit rounded-[100px] p-2">
                     <div className={`flex items-center justify-center gap-2 p-3  rounded-[100px] cursor-pointer
                         ${loginMethod === "password" && "bg-white"} transition duration-400`}
@@ -43,9 +56,22 @@ const Page = () => {
                             text-[13px] font-[400]`}>ورود با کد پیامکی</p>
                     </div>
                 </div>
-                <Field icon={<PhoneIcon />} text="شماره همراه" />
+                <Field
+                    icon={<PhoneIcon />}
+                    text="شماره همراه"
+                    placeholder="9123456789"
+                    value={username}
+                    setValue={setUsername}
+                />
                 {
-                    loginMethod === "password" && <Field icon={<LockIcon />} text="رمز عبور" />
+                    loginMethod === "password" &&
+                    <Field
+                        icon={<LockIcon />}
+                        text="رمز عبور"
+                        required={true}
+                        value={password}
+                        setValue={setPassword}
+                    />
                 }
                 <p className="text-[#949495] my-3">فراموشی رمز عبور</p>
                 <button type="submit"

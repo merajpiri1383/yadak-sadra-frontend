@@ -7,17 +7,17 @@ import { AxiosError } from "axios";
 import { Slide } from "react-awesome-reveal";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
-import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 // icons
 import UserIcon from "@/components/icons/auth/user";
 import LockIcon from "@/components/icons/auth/lock";
 import PhoneIcon from "@/components/icons/auth/phone";
-// components
+// utils
 import Field from "@/app/auth/components/field";
 import CheckBox from "@/app/auth/components/checkbox";
 import { RegisterAPI, VerifyRegisterAPI } from "@/lib/api/auth";
 import useLayoutStore from "@/lib/store/layout";
-import { useRouter } from "next/navigation";
+import { setToken } from "@/lib/axios";
 
 
 const Loading = dynamic(() => import("@/components/loading"), { ssr: false });
@@ -77,8 +77,7 @@ const Register = () => {
     useEffect(() => {
         if (verifyMutation.data) {
             set_user(verifyMutation.data.user);
-            Cookies.set("access_token",verifyMutation.data.access_token);
-            Cookies.set("refresh_token",verifyMutation.data.refresh_token);
+            setToken(verifyMutation.data.access_token, verifyMutation.data.refresh_token);
             router.push("/");
             toast.success("ثبت نام با موفقیت انجام شد");
         }
