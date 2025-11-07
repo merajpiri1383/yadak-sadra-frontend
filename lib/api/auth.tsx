@@ -33,3 +33,12 @@ export const LoginAPI = async (data: LoginAPIProps): Promise<VerifyRegisterAPIRe
     const response = await api.post("/auth/login/", data);
     return response.data;
 };
+
+interface SendOtpProps {
+    phone : string,
+}
+
+export const SendOtpAPI = async (data : SendOtpProps) => {
+    const response = await api.post("/auth/send-otp/",data);
+    return response.data;
+};
