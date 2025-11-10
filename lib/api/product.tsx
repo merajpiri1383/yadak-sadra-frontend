@@ -8,9 +8,12 @@ export const getProductCategory = async (
     brand: string | null,
     country: string | null,
 ) => {
-    console.log(brand);
     const response = await api.get(
         `/product/category/${slug}/?order=${sort}&brand=${brand ? brand : ""}&country=${country ? country : ""}`
     );
     return response.data;
 }
+
+
+
+

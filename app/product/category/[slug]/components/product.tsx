@@ -1,17 +1,45 @@
 "use client"
 import { FC, useState } from "react";
 import Image from "next/image";
+import { AxiosError } from "axios";
 import { ProductType } from "@/components/types/product";
+import { addProductCart, removeProductCart } from "@/lib/api/cart";
 import SubtractIcon from "@/components/icons/header/subtract";
 import CarIcon from "@/components/icons/product/car";
 import PlusIcon from "@/components/icons/product/plus";
 import MinusIcon from "@/components/icons/product/minus";
+import { useMutation } from "@tanstack/react-query";
 
 
 
 const Product: FC<ProductType> = (props) => {
 
     const [count, setCount] = useState<number>(0);
+
+    const addProductCartMutation = useMutation({
+        mutationFn: addProductCart,
+        onSuccess: (data) => {
+            setCount(count + 1);
+        },
+        onError: (error: AxiosError) => {
+            console.log(error.response?.data);
+        }
+    });
+
+    const removeProductCartMutation = useMutation({
+        mutationFn: removeProductCart,
+        onSuccess: (data) => {
+            setCount(count < 1 ? 0 : count - 1)
+        }
+    });
+
+    const addHandler = () => {
+        addProductCartMutation.mutate({ product_id: props.id });
+    };
+    const removeHandler = () => {
+        removeProductCartMutation.mutate({ product_id: props.id });
+    };
+
 
     return (
         <div className="border-[1px] border-[#E6E6E6] rounded-[32px] p-6 select-none">
@@ -23,6 +51,7 @@ const Product: FC<ProductType> = (props) => {
                             alt={props.country.slug}
                             fill={true}
                             className="rounded-full"
+                            sizes="100%"
                             style={{ objectFit: "cover", objectPosition: "center" }}
                         />
                     }
@@ -36,6 +65,7 @@ const Product: FC<ProductType> = (props) => {
                         src={props.main_image}
                         alt={props.title}
                         fill={true}
+                        sizes="100%"
                         style={{ objectFit: "cover", objectPosition: "center" }}
                     />
                 }
@@ -63,7 +93,7 @@ const Product: FC<ProductType> = (props) => {
                 <div className="flex items-center justify-center gap-4 h-[43px] bg-[#F0F3F8] p-2 rounded-full">
                     <div className="bg-white size-[29px] rounded-full flex items-center justify-center
                         cursor-pointer active:scale-115 transition duration-200"
-                        onClick={() => setCount(count + 1)}>
+                        onClick={addHandler}>
                         <div className="size-[7px]">
                             <PlusIcon />
                         </div>
@@ -71,7 +101,7 @@ const Product: FC<ProductType> = (props) => {
                     <p className="text-[#5D6777] font-bold text-[16px]">{count}</p>
                     <div className="bg-white size-[29px] rounded-full flex items-center justify-center
                         cursor-pointer active:scale-115 transition duration-200"
-                        onClick={() => setCount(count < 1 ? 0 : count - 1)}>
+                        onClick={removeHandler}>
                         <div className="size-[7px]">
                             <MinusIcon />
                         </div>

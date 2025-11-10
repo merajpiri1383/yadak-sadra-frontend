@@ -3,3 +3,8 @@
 * {
     font-family: var(--yekan-font);
 }
+
+
+.hide-scrollbar {
+    scrollbar-width: none;
+}
