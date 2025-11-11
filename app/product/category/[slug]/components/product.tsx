@@ -94,7 +94,7 @@ const Product: FC<ProductType> = (props) => {
                     <div className="bg-white size-[29px] rounded-full flex items-center justify-center
                         cursor-pointer active:scale-115 transition duration-200"
                         onClick={addHandler}>
-                        <div className="size-[7px]">
+                        <div className="size-[16px]">
                             <PlusIcon />
                         </div>
                     </div>
@@ -102,7 +102,7 @@ const Product: FC<ProductType> = (props) => {
                     <div className="bg-white size-[29px] rounded-full flex items-center justify-center
                         cursor-pointer active:scale-115 transition duration-200"
                         onClick={removeHandler}>
-                        <div className="size-[7px]">
+                        <div className="size-[16px]">
                             <MinusIcon />
                         </div>
                     </div>
