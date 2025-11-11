@@ -28,6 +28,7 @@ const CarToolsTypes = () => {
                         <Image
                             src={LexusLogo}
                             alt="lexus-logo"
+                            sizes="100%"
                             fill={true}
                             className="z-[3]"
                             style={{ objectFit: "contain", objectPosition: "center" }}
@@ -62,6 +63,7 @@ const CarToolsTypes = () => {
                                 src={CheryImage}
                                 alt="chery-image"
                                 fill={true}
+                                sizes="100%"
                                 className="rounded-l-[20px]"
                                 style={{ objectFit: "cover", objectPosition: "center" }}
                             />
@@ -80,6 +82,7 @@ const CarToolsTypes = () => {
                                 src={IranianCar}
                                 alt="iranian-car"
                                 fill={true}
+                                sizes="100%"
                                 className="rounded-r-[20px]"
                                 style={{ objectFit: "cover", objectPosition: "center" }}
                             />
@@ -109,6 +112,7 @@ const CarToolsTypes = () => {
                             alt="lexus-logo"
                             fill={true}
                             className="z-[3]"
+                            sizes="100%"
                             style={{ objectFit: "contain", objectPosition: "center" }}
                         />
                         <Image
@@ -137,6 +141,7 @@ const CarToolsTypes = () => {
                         <Image
                             src={CitroenLogo}
                             alt="citroen-logo"
+                            sizes="100%"
                             fill={true}
                             className="z-[3]"
                             style={{ objectFit: "contain", objectPosition: "center" }}

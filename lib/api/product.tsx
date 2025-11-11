@@ -1,6 +1,5 @@
 import api from "@/lib/axios";
-
-
+import { ProductType } from "@/components/types/product";
 
 export const getProductCategory = async (
     slug: string,
@@ -15,5 +14,8 @@ export const getProductCategory = async (
 }
 
 
-
+export const searchProduct = async ({ query }: { query: string }): Promise<ProductType[]> => {
+    const response = await api.get(`/product/search/?search=${query}/`);
+    return response.data;
+};
 

@@ -2,9 +2,9 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import HeaderLinks from "@/components/header/links";
 import Logo from "@/public/logo.svg";
-import SearchIcon from "@/icons/header/search";
 
 const UserActions = dynamic(() => import("@/components/header/userActions"), { ssr: true });
+const HeaderSearch = dynamic(() => import("@/components/header/search"),{ssr : true});
 
 const Header = () => {
 
@@ -27,18 +27,7 @@ const Header = () => {
                         bg-[#0162A9] hover:shadow-xl transition duration-400 cursor-pointer">
                         <p className="text-white text-[13px] font-[700]">دسته بندی ها</p>
                     </div>
-                    <div className="bg-[#E9F0F4] p-4 flex items-center justify-between rounded-[53px]
-                        w-[280px]">
-                        <input
-                            type="text"
-                            placeholder="جستجو در محصولات ..."
-                            className="outline-none placeholder-[#4C6272F8] placeholder-[13px]
-                            font-bold"
-                        />
-                        <div className="size-[22px]">
-                            <SearchIcon />
-                        </div>
-                    </div>
+                    <HeaderSearch />
                 </div>
 
                 <div className="flex items-center justify-center gap-3">

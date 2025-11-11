@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ProductCategoryType } from "@/components/types";
+import { ProductCategoryType } from "@/components/types/product";
 
 
 const ProductCategories: FC<{
@@ -27,6 +27,7 @@ const ProductCategories: FC<{
                                         src={category.image}
                                         alt={category.slug}
                                         fill={true}
+                                        sizes="100%"
                                         className="rounded-[30px]"
                                         style={{ objectFit: "cover", objectPosition: "center" }}
                                     />
