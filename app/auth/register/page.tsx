@@ -72,7 +72,7 @@ const Register = () => {
             setShowOtpBox(true);
         }
 
-    }, [sendOtpMutation.data]);
+    }, [sendOtpMutation.data,router,set_user]);
 
     useEffect(() => {
         if (verifyMutation.data) {
@@ -150,7 +150,7 @@ const Register = () => {
                                 <p className="text-[13px] font-[400]">
                                     متعهد میشوم که
                                     <span className="text-[#00C2DC]">
-                                        "قوانین و مقررات"
+                                        قوانین و مقررات
                                     </span>
                                     را خوانده و قبول دارم
                                 </p>

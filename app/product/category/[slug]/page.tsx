@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import ArrowLeftIcon from "@/components/icons/home/arrowLeft";
@@ -37,16 +37,10 @@ const Page = () => {
     const { slug } = useParams<{ slug: string }>();
 
     const query = useQuery<ProductCategoryResponseType>({
-        queryKey: [slug],
+        queryKey: [slug,brandFilter, countryFilter, currentOrder],
         queryFn: () => getProductCategory(slug, currentOrder.slug, brandFilter, countryFilter)
     });
 
-
-
-
-    useEffect(() => {
-        query.refetch();
-    }, [brandFilter, countryFilter, currentOrder]);
 
 
     return (
@@ -87,7 +81,8 @@ const Page = () => {
                             })
                         }
                     </div>
-                    <p className="text-[#8E98AD] text-[13.5px] font-[500]">۴۰۰ محصول</p>
+                    <p className="text-[#8E98AD] text-[13.5px] font-[500]">
+                        {query.data?.count} محصول</p>
                 </div>
             </div>
 
@@ -108,7 +103,7 @@ const Page = () => {
                     {
                         query.data?.products.map((product) => {
                             return (
-                                <Product key={product.slug} {...product} />
+                                <Product key={product.id} {...product} />
                             )
                         })
                     }

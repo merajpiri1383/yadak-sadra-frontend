@@ -149,7 +149,7 @@ const Brands: FC<{
         } else {
             setFilteredBrands(car_brands.filter((item) => item.country?.slug === currentCountry))
         }
-    },[currentCountry]);
+    },[currentCountry,car_brands]);
 
     return (
         <div className="bg-[#E9F0F4] my-12 rounded-[50px] relative py-6 select-none">

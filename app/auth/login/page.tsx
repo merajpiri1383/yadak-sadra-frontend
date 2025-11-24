@@ -4,7 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import Field from "@/app/auth/components/field";
 import PhoneIcon from "@/components/icons/auth/phone";
@@ -44,7 +44,7 @@ const Page = () => {
             toast.success("login sucessfully");
             router.push("/");
         }
-    }, [loginMutation.data]);
+    }, [loginMutation.data, set_user, router]);
 
     const sendOtpMutation = useMutation({
         mutationFn: SendOtpAPI,
@@ -59,7 +59,7 @@ const Page = () => {
             if (error.response?.data) {
                 try {
                     toast.error(Object.values(error.response.data)[0]);
-                }catch {};
+                } catch { };
             }
         },
         onSuccess: (data) => {

@@ -7,12 +7,13 @@ import { ProductCategoryType } from "@/components/types/product";
 const ProductCategories: FC<{
     categories: ProductCategoryType[],
 }> = ({ categories }) => {
+
     return (
         <div className="mx-16 my-6 grid grid-cols-5 gap-6">
             {
-                categories.map((category) => {
+                categories.map((category, index) => {
                     return (
-                        <Link href={"/product/category/" + category.slug} key={category.slug}
+                        <Link href={"/product/category/" + category.slug} key={index}
                             className="shadow-lg rounded-[30px] hover:-translate-y-[10px] transition
                             duration-300">
                             <div className="border-dashed border border-[#E2E8EF] rounded-[30px] p-6 pb-0

@@ -23,13 +23,17 @@ const UserActions = () => {
 
     const showLoginStatusHandler = (e: React.MouseEvent) => {
         e.stopPropagation();
-        currentPopup === "login" ? setPopup(null) : setPopup("login");
+        if (currentPopup === "login") {
+            setPopup(null);
+        } else {
+            setPopup("login");
+        }
     }
 
     const showCartStatusHandler = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (user_data?.username) {
-            currentPopup === "cart" ? setPopup(null) : setPopup("cart");
+            setPopup(currentPopup === "cart" ? null : "cart");
         } else {
             router.push("/auth/login");
         }

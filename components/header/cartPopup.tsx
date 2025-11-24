@@ -8,7 +8,6 @@ import PlusIcon from "@/icons/product/plus";
 import MinusIcon from "@/icons/product/minus";
 import { addProductCart, getCartDetail, removeProductCart } from "@/lib/api/cart";
 import { CartProductType } from "@/components/types/cart";
-import useLayoutStore from "@/lib/store/layout";
 import EmptyCartLogo from "@/public/empty-cart-logo.svg";
 
 
@@ -76,8 +75,6 @@ const CartProduct: FC<CartProductType> = ({ count, product }) => {
 };
 
 const CartPopup = () => {
-
-    const { user_data } = useLayoutStore();
     const query = useQuery({
         queryFn: getCartDetail,
         queryKey: ["cart-detail",],

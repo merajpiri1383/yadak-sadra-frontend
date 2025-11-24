@@ -4,7 +4,7 @@ import Image from "next/image";
 import CaretUpIcon from "@/icons/footer/caretUp";
 import FooterLogo from "@/public/logo-footer.svg";
 import useLayoutStore from "@/lib/store/layout";
-import { useMemo } from "react";
+import { useEffect } from "react";
 
 const Cards = dynamic(() => import("@/components/footer/cards"), { ssr: false });
 const Links = dynamic(() => import("@/components/footer/links"), { ssr: false });
@@ -15,9 +15,9 @@ const Footer = () => {
 
     const { footer_data, fetchData } = useLayoutStore();
 
-    useMemo(() => {
+    useEffect(() => {
         fetchData();
-    }, []);
+    }, [fetchData]);
 
     return (
         <footer className="bg-[#38455A] px-16 relative">

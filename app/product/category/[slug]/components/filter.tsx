@@ -32,11 +32,19 @@ const ProductFilter: FC<Props> = ({
     const countryRef = useRef<HTMLDivElement | null>(null);
 
     const handleCountyFilter = (country: CountryType) => {
-        countryFilter === country.slug ? setCountryFilter(null) : setCountryFilter(country.slug);
+        if (countryFilter === country.slug) {
+            setCountryFilter(null)
+        } else {
+            setCountryFilter(country.slug);
+        }
     };
 
     const handleBrandFilter = (brand: CarBrandsType) => {
-        brandFilter === brand.slug ? setBrandFilter(null) : setBrandFilter(brand.slug);
+        if (brandFilter === brand.slug) {
+            setBrandFilter(null)
+        } else {
+            setBrandFilter(brand.slug)
+        }
     }
 
     return (

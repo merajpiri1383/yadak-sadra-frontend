@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { CartProductType } from "@/components/types/cart";
 import { addProductCart, removeProductCart, deleteCartProduct } from "@/lib/api/cart";
 import TrashIcon from "@/components/icons/cart/trash";
@@ -15,14 +16,14 @@ const CartProduct: FC<CartProductType> = ({ count, product }) => {
 
     const addMutation = useMutation({
         mutationFn: addProductCart,
-        onSuccess: (data) => {
+        onSuccess: () => {
             queryclient.invalidateQueries({ queryKey: ["cart-detail"] });
         }
     });
 
     const removeMutation = useMutation({
         mutationFn: removeProductCart,
-        onSuccess: (data) => {
+        onSuccess: () => {
             queryclient.invalidateQueries({ queryKey: ["cart-detail"] });
         }
     });
@@ -57,7 +58,9 @@ const CartProduct: FC<CartProductType> = ({ count, product }) => {
                         </div>
                     </div>
                     <div>
-                        <p className="text-[#121215] text-[16px] font-[700]">{product.title}</p>
+                        <Link href={"/product/" + product.slug}>
+                            <p className="text-[#121215] text-[16px] font-[700]">{product.title}</p>
+                        </Link>
                         <div className="flex items-center justify-start gap-2 mt-4">
                             <p className="text-[#1E222B] text-[20px] font-[700]">
                                 {product.price.toLocaleString()}

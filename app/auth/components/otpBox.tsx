@@ -13,24 +13,25 @@ interface Props {
 
 const OtpBox: FC<Props> = ({ setValue, value, submitHandler, setShowBox }) => {
 
-    const closeBoxHandler = () => {
-        setShowBox(false);
-    }
-
 
     useEffect(() => {
+
+        const closeBoxHandler = () => {
+            setShowBox(false);
+        }
+
         if (window) {
             window.addEventListener("click", closeBoxHandler);
             return () => window.removeEventListener('click', closeBoxHandler);
         }
-    }, []);
+    }, [setShowBox]);
 
     return (
         <div className="fixed top-0 left-0 right-0 bottom-0 z-[9] bg-[#000000]/40 select-none">
             <div className="flex items-center justify-center h-full w-full">
                 <Slide direction="down" duration={300} triggerOnce>
-                    <form 
-                        className="bg-white rounded-[30px] p-4" 
+                    <form
+                        className="bg-white rounded-[30px] p-4"
                         onClick={(event) => event.stopPropagation()}
                         onSubmit={submitHandler}>
                         <div className="size-[57px] bg-[#00C2DC] rounded-full flex items-center justify-center
