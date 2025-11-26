@@ -41,6 +41,7 @@ export interface ProductDetailType {
         image: string,
     }[],
     product_features: ProductFeature[],
+    similar_products : ProductType[],
 }
 
 export interface ProductCategoryResponseType {

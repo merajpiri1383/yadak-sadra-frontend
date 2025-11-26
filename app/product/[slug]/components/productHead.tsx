@@ -8,7 +8,7 @@ import { ProductType } from "@/components/types/product";
 
 const ProductHead: FC<ProductType> = (props) => {
     return (
-        <div className="flex items-center justify-between border-y py-4 border-[#E8EEF3]">
+        <div className="flex items-center justify-between border-y py-4 border-[#E8EEF3] px-20">
             <div className="flex items-center justify-center gap-3">
                 <Link href={"/"}>
                     <p className="text-[#8E98AD] font-[500] text-[12px]">صفحه اصلی</p>
